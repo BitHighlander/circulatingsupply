@@ -184,18 +184,26 @@ const read_blocks = async function(start,end, filename){
       let blockSummary = {}
       blockSummary.height = i
       blockSummary.hash = blockHash
+      blockSummary.time = blockInfo.time
+      blockSummary.txCount = blockInfo.tx.length
       let blockInfoSummary = await parse_block(blockInfo,i)
       blockSummary.blocksDestroyed = blockInfoSummary.blocksDestroyed
       blockSummary.volume = blockInfoSummary.volume
       
       log.info(blockSummary)
       logStream.write(JSON.stringify(blockSummary) + ",\n");
-  
+      
+      // index into mongo
+      blockInfo.txCount = blockInfo.tx.length
+      blockInfo.blocksDestroyed = blockInfoSummary.blocksDestroyed
+      blockInfo.volume = blockInfoSummary.volume
+      await blocks.insert(blockInfo)
+      
       daysDestroyed = daysDestroyed + blockSummary.daysDestroyed
       txVolume = txVolume + blockSummary.volume
       
       //pause
-      await pause(0.1)
+      //await pause(0.1)
     }
     
     log.info(tag,"daysDestroyed: ",daysDestroyed)
