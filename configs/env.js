@@ -40,9 +40,9 @@ let config = {
   COINS:["BTC","LTC","ETH"],
   
   BTC_DAEMON: {
-    host: process.env['BTC_DAEMON_HOST'],
-    port: process.env['BTC_DAEMON_PORT'],
-    user: process.env['BTC_DAEMON_USER'],
+    host: process.env['BTC_DAEMON_HOST'] || "127.0.0.1",
+    port: process.env['BTC_DAEMON_PORT'] || "8332",
+    user: process.env['BTC_DAEMON_USER'] || "rpcuser",
     pass: process.env['BTC_DAEMON_PASS']
   },
   

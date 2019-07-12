@@ -58,7 +58,7 @@
     }
 
     
-    audit history stratigy
+    audit history strategy
     
     index all txids by address
     
@@ -75,7 +75,6 @@
     find balance at any given time per address
     
     https://stackoverflow.com/questions/23553922/mongodb-find-inside-sub-array
-    
     db.infos.aggregate([
         // Still match the document
         { "$match": {

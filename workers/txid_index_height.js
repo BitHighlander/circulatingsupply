@@ -67,6 +67,7 @@ let do_work = async function () {
       if (blockHeight) {
         blockHeight = parseInt(blockHeight[1])
         log.debug(tag,"blockHeight: ",blockHeight)
+
         //get block at height
         let blockHash = await btc.getBlockHash(blockHeight)
         log.debug(tag,"blockHash: ",blockHash)
